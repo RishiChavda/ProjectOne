@@ -1,15 +1,22 @@
 package projectone;
 
-import com.sun.org.apache.xml.internal.security.utils.Base64;
+import java.util.Base64;
 
 public class ProgramOne {
 	public static void main(String[] args) {
-		String plain = "amessageamessageamessageamessage";
-		String cipher = Base64.encode(plain.getBytes());
+		try {
+			String plain = "amessageamessageamessageamessage";
+			String cipher = Base64.getEncoder().encodeToString(plain.getBytes());
 
-		System.out.println("PLAIN\t" + plain);
+			System.out.println("PLAIN\t" + plain);
+			System.out.println("CIPHER\t" + cipher);
 
-		System.out.println("CIPHER\t" + cipher);
+			String decrypted = new String(Base64.getDecoder().decode(cipher.getBytes()));
 
+			System.out.println("DECRYPT\t" + decrypted);
+		}
+		catch(Exception e) {
+			// do nothing
+		}
 	}
 }
